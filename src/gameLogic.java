@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Stack;
 
 
 public class gameLogic {
@@ -61,47 +60,38 @@ public class gameLogic {
 		int[][] M=new int[sizeMatrix][sizeMatrix];
 		int[] zeroNum=new int[sizeMatrix];
 		int i,j,k;
-		boolean merged,changed=false;
-		Stack<Integer> S = new Stack<Integer>(); 
+		boolean changed=false;
+
+		
 		if (d==direction.left){
 			for (i=0;i<sizeMatrix;i++){
-				S.clear();
+				
 				zeroNum[i]=sizeMatrix;//record the number of zeros in each line
-		
+				k=0;
 				for (j=0;j<sizeMatrix;j++){
-					if (matrix[i][sizeMatrix-j-1]!=0){					
-						S.push(matrix[i][sizeMatrix-j-1]);//first add all non-zero values 
+					if (matrix[i][j]!=0){					
+						if (M[i][k]==0){
+							M[i][k]=matrix[i][j];
+							zeroNum[i]--;
+						}
+						else if (M[i][k]==matrix[i][j]){
+							M[i][k]=matrix[i][j]*2;
+							k++;
+						}
+						else{
+							k++;
+							M[i][k]=matrix[i][j];
+							zeroNum[i]--;
+						}
 					}					
 				}
-				k=0;
-				merged=false;
-				if (!S.empty()){
-					M[i][k]=S.pop();//get the first
-					zeroNum[i]--;
-				}
-				
-				
-				while (!S.empty()){
-					if (S.peek()==M[i][k] && merged==false)//the same and not murged, double it
-					{	
-						M[i][k]=S.pop()*2;
-						merged=true;
-					}
-					else
-					{
-						k++;
-						M[i][k]=S.pop();
-						zeroNum[i]--;
-						merged=false;
-					}
-				}
-				
 				//see if there is any change
 				if (!Arrays.equals(matrix[i], M[i])){
 					changed=true;
 				}
 			}
-			
+		
+		
 			if (changed==false)
 			{
 				System.out.print("Same!\n");
