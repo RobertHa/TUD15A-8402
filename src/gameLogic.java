@@ -101,6 +101,7 @@ public class gameLogic {
 					//full& not movable leads to gameover
 					if (!isMovable()){ 
 						gameOver=true;//game over
+						calcScore();
 					}
 				}
 			}
@@ -134,8 +135,16 @@ public class gameLogic {
 		return changed;
 		
 	}
-	
-		
+
+	//calculates highest tile when you are gameover
+	void calcScore(){
+		for (int i = 0; i <this.sizeMatrix ; i++) {
+			for (int j = 0; j < this.sizeMatrix; j++) {
+				score = Math.max(score,this.matrix[i][j]);
+			}
+		}
+	}
+
 	//see if full
 	public boolean isFull(){
 		for (int i=0;i<sizeMatrix;i++){
@@ -172,12 +181,12 @@ public class gameLogic {
 			newPos=newPos-znum[i++];
 		}
 		//generate a new block
-		if (Math.random()>0.3){
+		//if (Math.random()>0.3){
 			matrix[i][sizeMatrix-newPos-1]=2;//2 or 4
-		}
-		else{
-			matrix[i][sizeMatrix-newPos-1]=4;
-		}
+		//}
+		//else{
+		//	matrix[i][sizeMatrix-newPos-1]=4;
+		//}
 					
 		
 	}
