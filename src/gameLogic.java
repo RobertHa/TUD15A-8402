@@ -66,6 +66,9 @@ public class gameLogic {
 			for (i=0;i<sizeMatrix;i++){
 				S.clear();
 				zeroNum[i]=sizeMatrix;//record the number of zeros in each line
+				
+				
+
 				for (j=0;j<sizeMatrix;j++){
 					if (matrix[i][sizeMatrix-j-1]!=0){					
 						S.push(matrix[i][sizeMatrix-j-1]);
@@ -94,6 +97,7 @@ public class gameLogic {
 					}
 				}
 				
+				
 				if (!Arrays.equals(matrix[i], M[i])){
 					changed=true;
 				}
@@ -103,7 +107,10 @@ public class gameLogic {
 			{
 				System.out.print("Same!\n");
 				if (isFull()){
-					gameOver=true;//game over
+					//check
+					if (!isMovable()){ 
+						gameOver=true;//game over
+					}
 				}
 			}
 			else
@@ -150,7 +157,16 @@ public class gameLogic {
 	}
 	
 
-	
+	//see if movable
+	public boolean isMovable(){
+		for (int i=0;i<sizeMatrix;i++){
+			for (int j=0;j<sizeMatrix-1;j++)
+				if (matrix[i][j]==matrix[i][j+1] || matrix[j][i]==matrix[j+1][i]){
+					return true;
+				}
+		}
+		return false;
+	}
 
 	public void generateNewBlock(int[] znum){
 		int numZero=0;
