@@ -210,38 +210,5 @@ public class gameLogic {
 		step=step+1;
 		System.out.println('\n');
 	}
-	
-	public static void main(String[] args)
-	{
-		int size=4;
-		gameLogic M=new gameLogic(size);
-		System.out.println("Origine: \n");
-		M.show();
-		while (M.gameOver==false){
-			int tmp=(int)(Math.random()*4);
-			switch(tmp){
-			case 0:
-				System.out.println("swipe up: \n");
-				M.swipe(direction.up);
-				M.show();
-				break;
-			case 1:
-				System.out.println("swipe left: \n");
-				M.swipe(direction.left);
-				M.show();
-				break;
-			case 2:
-				System.out.println("swipe down: \n");
-				M.swipe(direction.down);
-				M.show();
-				break;
-			default:
-				System.out.println("swipe right: \n");
-				M.swipe(direction.right);
-				M.show();
-				break;
-			}
-		}
 
-	}
 }
