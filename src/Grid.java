@@ -18,7 +18,7 @@ public class Grid extends Canvas{
 		  public void paint(Graphics g) {
 		    width = getSize().width;
 		    height = getSize().height;
-
+		    if(!M.gameOver){
 			int rows = M.sizeMatrix;
 			  int cols = M.sizeMatrix;
 		    // draw the rows
@@ -37,6 +37,10 @@ public class Grid extends Canvas{
 		    		if (M.matrix[i][j] != 0)
 		    		g.drawString(Integer.toString(M.matrix[i][j]), (j+ 1) * rowWid - (rowWid / 2), (i+1) * rowHt - (rowHt /2));
 		    	}
+		    }
+		    } else {
+		    	g.drawString("Game Over!", width/2 - 40, height/2 - 10);
+		    	g.drawString("Your Score: " + M.score, width/2 - 45, height/2 + 10);
 		    }
 		  }
 		  
