@@ -3,13 +3,13 @@ import java.util.Stack;
 
 
 public class gameLogic {
-	int sizeMatrix;
-	int[][] matrix;
-	boolean gameStart;
-	boolean gameOver;
-	int score;
-	int step;
-	enum direction {left,right,up,down};
+	int sizeMatrix=4;//size
+	int[][] matrix;//to record the value of each block
+	boolean gameStart;//flag in game
+	boolean gameOver;//flag in game
+	int score;//record the score
+	int step;//for testing
+	enum direction {left,right,up,down};//4 directions
 	
 	//construction
 	gameLogic(int size){
@@ -33,7 +33,8 @@ public class gameLogic {
 	
 	
 	//will be used for simplifying swipe 
-	
+	//trans turns up/down to left/right
+	//l2r turns from right to left
 	public void trans(){
 		int[][] M=new int[sizeMatrix][sizeMatrix];
 		for (int i=0;i<sizeMatrix;i++)
@@ -66,24 +67,22 @@ public class gameLogic {
 			for (i=0;i<sizeMatrix;i++){
 				S.clear();
 				zeroNum[i]=sizeMatrix;//record the number of zeros in each line
-				
-				
-
+		
 				for (j=0;j<sizeMatrix;j++){
 					if (matrix[i][sizeMatrix-j-1]!=0){					
-						S.push(matrix[i][sizeMatrix-j-1]);
+						S.push(matrix[i][sizeMatrix-j-1]);//first add all non-zero values 
 					}					
 				}
 				k=0;
 				merged=false;
 				if (!S.empty()){
-					M[i][k]=S.pop();
+					M[i][k]=S.pop();//get the first
 					zeroNum[i]--;
 				}
 				
 				
 				while (!S.empty()){
-					if (S.peek()==M[i][k] && merged==false)
+					if (S.peek()==M[i][k] && merged==false)//the same and not murged, double it
 					{	
 						M[i][k]=S.pop()*2;
 						merged=true;
@@ -97,7 +96,7 @@ public class gameLogic {
 					}
 				}
 				
-				
+				//see if there is any change
 				if (!Arrays.equals(matrix[i], M[i])){
 					changed=true;
 				}
@@ -107,7 +106,7 @@ public class gameLogic {
 			{
 				System.out.print("Same!\n");
 				if (isFull()){
-					//check
+					//full& not movable leads to gameover
 					if (!isMovable()){ 
 						gameOver=true;//game over
 					}
@@ -171,21 +170,16 @@ public class gameLogic {
 	public void generateNewBlock(int[] znum){
 		int numZero=0;
 		int i;
+		//first count the number
 		for (i=0;i<sizeMatrix;i++){
 			numZero=numZero+znum[i];
-//			System.out.print(znum[i]);
 		}
-//		System.out.print('\t');
-//		System.out.print(numZero);
-//		System.out.print('\t');
-		int newPos=(int)(Math.random()*numZero);
-//		System.out.print(newPos);
-//		System.out.print('\t');
+		int newPos=(int)(Math.random()*numZero);//decide the position
 		i=0;
 		while (newPos>=znum[i]){
 			newPos=newPos-znum[i++];
 		}
-		
+		//generate a new block
 		if (Math.random()>0.3){
 			matrix[i][sizeMatrix-newPos-1]=2;//2 or 4
 		}
