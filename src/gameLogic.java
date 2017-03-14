@@ -172,12 +172,12 @@ public class gameLogic {
 			newPos=newPos-znum[i++];
 		}
 		//generate a new block
-		if (Math.random()>0.3){
+		//if (Math.random()>0.3){
 			matrix[i][sizeMatrix-newPos-1]=2;//2 or 4
-		}
-		else{
-			matrix[i][sizeMatrix-newPos-1]=4;
-		}
+		//}
+		//else{
+		//	matrix[i][sizeMatrix-newPos-1]=4;
+		//}
 					
 		
 	}
