@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 public class Display extends Frame {
 	private gameLogic M;
-
+	
 	Display(String title, int w, int h, int rows, int cols, int[][] m, gameLogic M) {
 
 		setTitle(title);
@@ -30,19 +30,26 @@ public class Display extends Frame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				int key = e.getExtendedKeyCode();
-				switch (key) {
-				case KeyEvent.VK_UP:
-					doStuff(0);
-					break;
-				case KeyEvent.VK_LEFT:
-					doStuff(1);
-					break;
-				case KeyEvent.VK_DOWN:
-					doStuff(2);
-					break;
-				case KeyEvent.VK_RIGHT:
-					doStuff(3);
-					break;
+				if (M.gameOver==false){
+					switch (key) {
+					case KeyEvent.VK_UP:
+						doStuff(0);
+						break;
+					case KeyEvent.VK_LEFT:
+						doStuff(1);
+						break;
+					case KeyEvent.VK_DOWN:
+						doStuff(2);
+						break;
+					case KeyEvent.VK_RIGHT:
+						doStuff(3);
+						break;
+					}
+				}
+				else{
+					if (key==KeyEvent.VK_SPACE){
+						M.restart(M.sizeMatrix);
+					}
 				}
 			}
 
@@ -55,7 +62,7 @@ public class Display extends Frame {
 	}
 
 	public static void main(String[] a) {
-		int size = 4;
+		int size=4;
 		gameLogic M = gameLogic.getInstance(size);
 		new Display("Test", 300, 300, M.sizeMatrix, M.sizeMatrix, M.matrix, M).setVisible(true);
 	}
@@ -65,9 +72,7 @@ public class Display extends Frame {
 		switch (dir) {
 		case 0:
 			System.out.println("swipe up: \n");
-			System.out.println(M);
 			M.swipe(gameLogic.direction.up);
-			System.out.println("i got through swipe");
 			this.getComponent(0).repaint();
 			M.show();
 			break;
