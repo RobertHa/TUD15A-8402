@@ -1,5 +1,6 @@
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
@@ -17,16 +18,18 @@ public class Grid extends Canvas {
 
 	public void paint(Graphics g) {
 		
-		Color[] c={Color.cyan,Color.orange,Color.lightGray,Color.magenta};
+		Color[] c={Color.cyan,Color.orange,Color.lightGray,Color.magenta};		
 		width = getSize().width;
 		height = getSize().height;
+		
 		if (!M.gameOver) {
 			int rows = M.sizeMatrix;
 			int cols = M.sizeMatrix;
 			int rowHt = height / (rows);
 			int rowWid = width / (cols);
-
-
+			int sizeFont=rowHt;
+			if (rowWid<sizeFont) sizeFont=rowWid;
+			sizeFont=sizeFont/3;
 
 			// draw the numbers
 			for (int i = 0; i < rows; i++) {
@@ -37,6 +40,7 @@ public class Grid extends Canvas {
 						g.setColor(c[Math.floorMod(n, 4)]);
 						g.fillRect(rowWid*j, rowHt*i, rowWid, rowHt);
 						g.setColor(Color.black);
+						g.setFont(new Font("Default",Font.PLAIN,sizeFont));;
 						g.drawString(Integer.toString(M.matrix[i][j]), (j + 1) * rowWid - (rowWid / 2),
 								(i + 1) * rowHt - (rowHt / 2));
 					}
