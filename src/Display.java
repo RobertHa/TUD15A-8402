@@ -48,7 +48,8 @@ public class Display extends Frame {
 				}
 				else{
 					if (key==KeyEvent.VK_SPACE){
-						M.restart(M.sizeMatrix);
+						doStuff(4);
+						
 					}
 				}
 			}
@@ -94,6 +95,12 @@ public class Display extends Frame {
 			this.getComponent(0).repaint();
 			M.show();
 			break;
+		case 4:	
+			M.restart(M.sizeMatrix);
+			this.getComponent(0).repaint();
+			M.show();
+			break;
+			
 		}
 	}
 
