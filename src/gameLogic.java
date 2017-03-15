@@ -1,36 +1,46 @@
 import java.util.Arrays;
 
 public class gameLogic {
-	int sizeMatrix = 4;// size
-	int[][] matrix;// to record the value of each block
-	boolean gameStart;// flag in game
-	boolean gameOver;// flag in game
-	int score;// record the score
-	int step;// for testing
 
-	enum direction {
-		left, right, up, down
-	};// 4 directions
-
-	// construction
-	gameLogic(int size) {
-		gameStart = true;
-		gameOver = false;
-		step = 1;
-		sizeMatrix = size;
-		matrix = new int[size][size];
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++)
-				matrix[i][j] = 0;
+	int sizeMatrix=4;//size
+	int[][] matrix;//to record the value of each block
+	boolean gameStart;//flag in game
+	boolean gameOver;//flag in game
+	int score;//record the score
+	int step;//for testing
+	enum direction {left,right,up,down};//4 directions
+	private static gameLogic M;
+	
+	//construction
+	private gameLogic(int size){
+		gameStart=true;
+		gameOver=false;
+		step=1;
+		sizeMatrix=size;
+		matrix=new int[size][size];
+		for (int i=0;i<size;i++){
+			for (int j=0;j<size;j++)
+				matrix[i][j]=0;
 		}
 		matrix[0][0] = matrix[0][1] = 2;
 		score = 0;
 
 	}
 
-	void setMatrix(int[][] m) {
-		matrix = m.clone();
+	
+	//get instance
+	public static gameLogic getInstance(int size){
+		if (M==null){
+			M=new gameLogic(size);
+		}
+		return M;
 	}
+	
+	
+	void setMatrix(int[][] m){
+		matrix=m.clone();
+	}
+
 
 	// will be used for simplifying swipe
 	// trans turns up/down to left/right
@@ -205,5 +215,41 @@ public class gameLogic {
 		step = step + 1;
 		System.out.println('\n');
 	}
+
+	/*
+	public static void main(String[] args)
+	{
+		int size=4;
+		gameLogic M=new gameLogic(size);
+		System.out.println("Origine: \n");
+		M.show();
+		while (M.gameOver==false){
+			int tmp=(int)(Math.random()*4);
+			switch(tmp){
+			case 0:
+				System.out.println("swipe up: \n");
+				M.swipe(direction.up);
+				M.show();
+				break;
+			case 1:
+				System.out.println("swipe left: \n");
+				M.swipe(direction.left);
+				M.show();
+				break;
+			case 2:
+				System.out.println("swipe down: \n");
+				M.swipe(direction.down);
+				M.show();
+				break;
+			default:
+				System.out.println("swipe right: \n");
+				M.swipe(direction.right);
+				M.show();
+				break;
+			}
+		}
+
+	}
+	*/
 
 }

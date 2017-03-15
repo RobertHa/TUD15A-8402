@@ -56,7 +56,7 @@ public class Display extends Frame {
 
 	public static void main(String[] a) {
 		int size = 4;
-		gameLogic M = new gameLogic(size);
+		gameLogic M = gameLogic.getInstance(size);
 		new Display("Test", 300, 300, M.sizeMatrix, M.sizeMatrix, M.matrix, M).setVisible(true);
 	}
 
