@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class gameLogic {
+public class GameLogic {
 
 
 
