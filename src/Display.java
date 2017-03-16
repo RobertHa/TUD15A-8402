@@ -43,19 +43,19 @@ public class Display extends Frame{
 						System.out.println("gamestate: "+game.context.state.getCurrentState());
 						switch (key) {
 							case KeyEvent.VK_UP:
-								game.dir = gameLogic.direction.up;
+								game.dir = GameLogic.direction.up;
 								game.context.state.action(game);
 								break;
 							case KeyEvent.VK_LEFT:
-								game.dir = gameLogic.direction.left;
+								game.dir = GameLogic.direction.left;
 								game.context.state.action(game);
 								break;
 							case KeyEvent.VK_DOWN:
-								game.dir = gameLogic.direction.down;
+								game.dir = GameLogic.direction.down;
 								game.context.state.action(game);
 								break;
 							case KeyEvent.VK_RIGHT:
-								game.dir = gameLogic.direction.right;
+								game.dir = GameLogic.direction.right;
 								game.context.state.action(game);
 								break;
 						}
