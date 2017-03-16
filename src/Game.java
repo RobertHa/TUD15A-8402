@@ -6,7 +6,7 @@ public class Game {
     Display display;
     Board board;
     int currentSize;
-    gameLogic.direction dir;
+    GameLogic.direction dir;
     int key;
 
 
@@ -18,7 +18,7 @@ public class Game {
 
 
     public static void main(String[] a) {
-        int size=2;
+        int size=4;
         Game game = new Game(size);
         game.display = new Display("Test", 300, 300, game);
         game.display.setVisible(true);

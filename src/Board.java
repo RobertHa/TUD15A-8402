@@ -13,6 +13,6 @@ public class Board {
         board = new int[size][size];
         int [] dummy = new int[size];
         Arrays.fill(dummy,size);
-        gameLogic.generateNewBlock(dummy,this);
+        GameLogic.generateNewBlock(dummy,this);
     }
 }
