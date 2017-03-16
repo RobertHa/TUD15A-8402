@@ -8,12 +8,12 @@ import java.awt.event.WindowEvent;
 
 public class Grid extends Canvas {
 
-	gameLogic M;
+	Game game;
 	int width, height;
 
-	Grid(int w, int h, gameLogic M) {
+	Grid(int w, int h, Game g) {
 		setSize(width = w, height = h);
-		this.M = M;
+		this.game = g;
 	}
 
 	public void paint(Graphics g) {
@@ -22,9 +22,9 @@ public class Grid extends Canvas {
 		width = getSize().width;
 		height = getSize().height;
 		
-		if (M.playState()!=2) {
-			int rows = M.sizeMatrix;
-			int cols = M.sizeMatrix;
+		if (game.context.state.getCurrentState()!=2) {//2 == gameoverstate
+			int rows = game.board.size;
+			int cols = game.board.size;
 			int rowHt = height / (rows);
 			int rowWid = width / (cols);
 			int sizeFont=rowHt;
@@ -34,14 +34,14 @@ public class Grid extends Canvas {
 			// draw the numbers
 			for (int i = 0; i < rows; i++) {
 				for (int j = 0; j < cols; j++) {
-					if (M.matrix[i][j] != 0)
+					if (game.board.board[i][j] != 0)
 					{
-						int n=(int)(Math.log(M.matrix[i][j])/Math.log(2));//get the number in form of 1-n
+						int n=(int)(Math.log(game.board.board[i][j])/Math.log(2));//get the number in form of 1-n
 						g.setColor(c[Math.floorMod(n, 4)]);
 						g.fillRect(rowWid*j, rowHt*i, rowWid, rowHt);
 						g.setColor(Color.black);
 						g.setFont(new Font("Default",Font.PLAIN,sizeFont));;
-						g.drawString(Integer.toString(M.matrix[i][j]), (j + 1) * rowWid - (rowWid / 2),
+						g.drawString(Integer.toString(game.board.board[i][j]), (j + 1) * rowWid - (rowWid / 2),
 								(i + 1) * rowHt - (rowHt / 2));
 					}
 				}
@@ -52,7 +52,8 @@ public class Grid extends Canvas {
 				g.drawLine(i * rowWid, 0, i * rowWid, height);
 		} else {
 			g.drawString("Game Over!", width / 2 - 40, height / 2 - 10);
-			g.drawString("Your Score: " + M.score, width / 2 - 45, height / 2 + 10);
+			g.drawString("Your Score: " + game.board.score, width / 2 - 45, height / 2 + 10);
+			g.drawString("Press space to restart!", width / 2 - 50,height / 2 + 20);//TODO not sure if this is correct
 		}
 	}
 

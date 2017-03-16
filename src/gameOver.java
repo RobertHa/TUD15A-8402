@@ -1,9 +1,18 @@
-public class gameOver implements gameState{
-public void nextState(gamePlayContext context){
-	context.setState(new gameNoStart()); 
+public class gameOver implements GameState {
+	public static final int currentState = 2;
+	public int getCurrentState() {
+		return currentState;
+	}
+public void nextState(GameplayContext context){
+	context.setState(new GameNoStart());
 	System.out.println("State: Press to start!");
  }
-public int playState(gamePlayContext context){
+public int playState(GameplayContext context){
 	 return 2;
 }
+
+	@Override
+	public int action(GameplayContext context) {
+
+	}
 }

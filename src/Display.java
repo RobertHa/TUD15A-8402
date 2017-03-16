@@ -3,16 +3,14 @@ import java.awt.Frame;
 import java.awt.event.*;
 
 public class Display extends Frame{
-	private gameLogic M;
-
-	
-	Display(String title, int w, int h, int rows, int cols, int[][] m, gameLogic M) {
-		
+	Game game
+	//int rows, int cols, int[][] m, gameLogic M
+	Display(String title, int w, int h, Game g) {
+		this.game = g;
 				
 		setTitle(title);
-		this.M = M;
 		// Now create a Canvas and add it to the Frame.
-		Grid xyz = new Grid(w, h, M);
+		Grid xyz = new Grid(w, h, game);
 		add(xyz);
 
 		addWindowListener(new WindowAdapter() {
@@ -32,10 +30,10 @@ public class Display extends Frame{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				int key = e.getExtendedKeyCode();
-				if (M.playState()!=2){
+				if (game.context.state.getCurrentState()!=2){//2  == gameover
 					switch (key) {
 					case KeyEvent.VK_UP:
-						doStuff(0);
+						game.context.state.action();
 						break;
 					case KeyEvent.VK_LEFT:
 						doStuff(1);
@@ -64,11 +62,7 @@ public class Display extends Frame{
 		pack();
 	}
 
-	public static void main(String[] a) {
-		int size=2;
-		gameLogic M = gameLogic.getInstance(size);
-		new Display("Test", 300, 300, M.sizeMatrix, M.sizeMatrix, M.matrix, M).setVisible(true);
-	}
+
 
 	void doStuff(int dir) {
 
