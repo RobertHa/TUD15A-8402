@@ -1,22 +1,13 @@
 
-public class gamePlayContext {
-	 private gameState state;
-	 public gamePlayContext(gameState state) {
+public class GameplayContext {
+	 GameState state;
+	 public GameplayContext(GameState state) {
 	    this.state= state;
 	 }
-	public gamePlayContext() {
-		    this.state= null;
-		 }
-	 public void nextState() {
-	   state.nextState(this);
-	 }
-	 public int playState(){
-		 return state.playState(this);
-	 }
-	 public void setState(gameState state) {
+	 public void setState(GameState state) {
 	   this.state = state;
 	 }
-	 public gameState getState() {
+	 public GameState getState() {
 	   return state;
 	 }
 }

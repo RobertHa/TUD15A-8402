@@ -1,6 +1,7 @@
 
-public interface gameState {
-	public void nextState(gamePlayContext context);
-	public int playState(gamePlayContext context);
+public interface GameState {
+	public int getCurrentState();
+	public void nextState(Game game);
+	public void action(Game game);
 }
 
