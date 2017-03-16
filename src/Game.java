@@ -5,11 +5,15 @@ public class Game {
     GameplayContext context;
     Display display;
     Board board;
+    int currentSize;
+    gameLogic.direction dir;
+    int key;
 
 
     Game(int size){
-        this.context = new GameplayContext();//TODO more here
+        this.context = new GameplayContext(new Menue());//TODO more here
         this.board = new Board(size);
+        currentSize = size;
     }
 
 

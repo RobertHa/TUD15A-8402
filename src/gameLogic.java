@@ -30,16 +30,12 @@ public class gameLogic {
 
 	// four actions
 
-	public static boolean swipe(direction d, Board board) {
+	public static boolean swipe(direction d, Board board,Game game) {
 		int[][] M = new int[board.size][board.size];
 		int[] zeroNum = new int[board.size];
 		int i, j, k;
 		boolean changed = false;
-		
-		//swipe to start
-		if (context.playState()==0){
-			context.nextState();
-		}
+
 		
 		if (d == direction.left) {
 			for (i = 0; i < board.size; i++) {
@@ -77,7 +73,7 @@ public class gameLogic {
 					if (!isMovable(board)) {
 						calcScore(board);
 						//playing to game over
-						context.nextState();
+						game.context.nextState();
 					}
 				}
 			} else {
@@ -88,19 +84,19 @@ public class gameLogic {
 
 		if (d == direction.right) {
 			l2r(board);
-			changed = swipe(direction.left, board);
+			changed = swipe(direction.left, board, game);
 			l2r(board);
 		}
 
 		if (d == direction.up) {
 			trans(board);
-			changed = swipe(direction.left,board);
+			changed = swipe(direction.left,board,game);
 			trans(board);
 		}
 		if (d == direction.down) {
 			trans(board);
 			l2r(board);
-			changed = swipe(direction.left,board);
+			changed = swipe(direction.left,board,game);
 			l2r(board);
 			trans(board);
 		}
@@ -164,73 +160,7 @@ public class gameLogic {
         return board;
 	}
 
-	// restart
-	void restart(int size) {
 
-		//System.out.println("Press arrow keys to play the game!");
-		context.nextState();
-		
-		step = 1;
-		sizeMatrix = size;
-		matrix = new int[size][size];
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++)
-				matrix[i][j] = 0;
-		}
-		matrix[0][0] = matrix[0][1] = 2;
-		score = 0;
-	}
 
-	// for testing
-	/*public void show() {
-		System.out.format("Step%d:\n\n", step);
-		for (int i = 0; i < sizeMatrix; i++) {
-			for (int j = 0; j < sizeMatrix; j++)
-				System.out.format("%d\t", matrix[i][j]);
-			System.out.println('\n');
-		}
-		step = step + 1;
-		System.out.println('\n');
-	}
-	*/
-	public int playState(){
-		return context.playState();
-	}
-
-	/*
-	public static void main(String[] args)
-	{
-		int size=4;
-		gameLogic M=new gameLogic(size);
-		System.out.println("Origine: \n");
-		M.show();
-		while (M.gameOver==false){
-			int tmp=(int)(Math.random()*4);
-			switch(tmp){
-			case 0:
-				System.out.println("swipe up: \n");
-				M.swipe(direction.up);
-				M.show();
-				break;
-			case 1:
-				System.out.println("swipe left: \n");
-				M.swipe(direction.left);
-				M.show();
-				break;
-			case 2:
-				System.out.println("swipe down: \n");
-				M.swipe(direction.down);
-				M.show();
-				break;
-			default:
-				System.out.println("swipe right: \n");
-				M.swipe(direction.right);
-				M.show();
-				break;
-			}
-		}
-
-	}
-	*/
 
 }

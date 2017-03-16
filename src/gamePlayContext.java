@@ -4,15 +4,6 @@ public class GameplayContext {
 	 public GameplayContext(GameState state) {
 	    this.state= state;
 	 }
-	public GameplayContext() {
-		    this.state= null;
-		 }
-	 public void nextState() {
-	   state.nextState(this);
-	 }
-	 public int playState(){
-		 return state.playState(this);
-	 }
 	 public void setState(GameState state) {
 	   this.state = state;
 	 }

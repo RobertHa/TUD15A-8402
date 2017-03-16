@@ -3,7 +3,7 @@ import java.awt.Frame;
 import java.awt.event.*;
 
 public class Display extends Frame{
-	Game game
+	Game game;
 	//int rows, int cols, int[][] m, gameLogic M
 	Display(String title, int w, int h, Game g) {
 		this.game = g;
@@ -30,28 +30,39 @@ public class Display extends Frame{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				int key = e.getExtendedKeyCode();
-				if (game.context.state.getCurrentState()!=2){//2  == gameover
-					switch (key) {
-					case KeyEvent.VK_UP:
-						game.context.state.action();
+				switch (game.context.state.getCurrentState()){//2  == gameover
+					case 0:
+						if (key == KeyEvent.VK_E||key == KeyEvent.VK_S){
+							game.key = key;
+							game.context.state.action(game);
+						}
+					case 1:
+						switch (key) {
+							case KeyEvent.VK_UP:
+								game.dir = gameLogic.direction.up;
+								game.context.state.action(game);
+								break;
+							case KeyEvent.VK_LEFT:
+								game.dir = gameLogic.direction.left;
+								game.context.state.action(game);
+								break;
+							case KeyEvent.VK_DOWN:
+								game.dir = gameLogic.direction.down;
+								game.context.state.action(game);
+								break;
+							case KeyEvent.VK_RIGHT:
+								game.dir = gameLogic.direction.right;
+								game.context.state.action(game);
+								break;
+						}
+					case 2:
+						if (key==KeyEvent.VK_SPACE){
+							game.key = key;
+							game.context.state.action(game);
+						}
 						break;
-					case KeyEvent.VK_LEFT:
-						doStuff(1);
-						break;
-					case KeyEvent.VK_DOWN:
-						doStuff(2);
-						break;
-					case KeyEvent.VK_RIGHT:
-						doStuff(3);
-						break;
-					}
 				}
-				else{
-					if (key==KeyEvent.VK_SPACE){
-						doStuff(4);
-						
-					}
-				}
+
 			}
 
 			@Override
@@ -62,42 +73,5 @@ public class Display extends Frame{
 		pack();
 	}
 
-
-
-	void doStuff(int dir) {
-
-		switch (dir) {
-		case 0:
-			//System.out.println("swipe up: \n");
-			M.swipe(gameLogic.direction.up);
-			this.getComponent(0).repaint();
-			//M.show();
-			break;
-		case 1:
-			//System.out.println("swipe left: \n");
-			M.swipe(gameLogic.direction.left);
-			this.getComponent(0).repaint();
-			//M.show();
-			break;
-		case 2:
-			//System.out.println("swipe down: \n");
-			M.swipe(gameLogic.direction.down);
-			this.getComponent(0).repaint();
-			//M.show();
-			break;
-		case 3:
-			//System.out.println("swipe right: \n");
-			M.swipe(gameLogic.direction.right);
-			this.getComponent(0).repaint();
-			//M.show();
-			break;
-		case 4:	
-			M.restart(M.sizeMatrix);
-			this.getComponent(0).repaint();
-			//M.show();
-			break;
-			
-		}
-	}
 
 }
