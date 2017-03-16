@@ -16,6 +16,7 @@ public class gameLogic {
 	private gameLogic(int size){
 		
 		System.out.println("Press arrow keys to play the game!");
+		System.out.println("State: Press to start!");
 		context=new gamePlayContext(new gameNoStart());
 
 	
@@ -108,7 +109,7 @@ public class gameLogic {
 			}
 
 			if (changed == false) {
-				System.out.print("Same!\n");
+				//System.out.print("Same!\n");
 				if (isFull()) {
 					// full& not movable leads to gameover
 					if (!isMovable()) {
@@ -202,9 +203,8 @@ public class gameLogic {
 	// restart
 	void restart(int size) {
 
-		System.out.println("Press arrow keys to play the game!");
-		context=new gamePlayContext(new gameNoStart());
-
+		//System.out.println("Press arrow keys to play the game!");
+		context.nextState();
 		
 		step = 1;
 		sizeMatrix = size;

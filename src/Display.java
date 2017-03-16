@@ -74,25 +74,25 @@ public class Display extends Frame{
 
 		switch (dir) {
 		case 0:
-			System.out.println("swipe up: \n");
+			//System.out.println("swipe up: \n");
 			M.swipe(gameLogic.direction.up);
 			this.getComponent(0).repaint();
 			//M.show();
 			break;
 		case 1:
-			System.out.println("swipe left: \n");
+			//System.out.println("swipe left: \n");
 			M.swipe(gameLogic.direction.left);
 			this.getComponent(0).repaint();
 			//M.show();
 			break;
 		case 2:
-			System.out.println("swipe down: \n");
+			//System.out.println("swipe down: \n");
 			M.swipe(gameLogic.direction.down);
 			this.getComponent(0).repaint();
 			//M.show();
 			break;
 		case 3:
-			System.out.println("swipe right: \n");
+			//System.out.println("swipe right: \n");
 			M.swipe(gameLogic.direction.right);
 			this.getComponent(0).repaint();
 			//M.show();
