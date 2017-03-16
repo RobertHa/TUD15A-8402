@@ -22,7 +22,7 @@ public class Grid extends Canvas {
 		width = getSize().width;
 		height = getSize().height;
 		
-		if (!M.gameOver) {
+		if (M.playState()!=2) {
 			int rows = M.sizeMatrix;
 			int cols = M.sizeMatrix;
 			int rowHt = height / (rows);

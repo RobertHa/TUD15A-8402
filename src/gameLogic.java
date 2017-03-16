@@ -4,17 +4,21 @@ public class gameLogic {
 
 	int sizeMatrix=4;//size
 	int[][] matrix;//to record the value of each block
-	boolean gameStart;//flag in game
-	boolean gameOver;//flag in game
+
 	int score;//record the score
 	int step;//for testing
 	enum direction {left,right,up,down};//4 directions
 	private static gameLogic M;
+	private static gamePlayContext context;
+
 	
 	//construction
 	private gameLogic(int size){
-		gameStart=true;
-		gameOver=false;
+		
+		System.out.println("Press arrow keys to play the game!");
+		context=new gamePlayContext(new gameNoStart());
+
+	
 		step=1;
 		sizeMatrix=size;
 		matrix=new int[size][size];
@@ -45,7 +49,7 @@ public class gameLogic {
 	// will be used for simplifying swipe
 	// trans turns up/down to left/right
 	// l2r turns from right to left
-	public void trans() {
+	private void trans() {
 		int[][] M = new int[sizeMatrix][sizeMatrix];
 		for (int i = 0; i < sizeMatrix; i++)
 			for (int j = 0; j < sizeMatrix; j++)
@@ -53,7 +57,7 @@ public class gameLogic {
 		matrix = M.clone();
 	}
 
-	public void l2r() {
+	private void l2r() {
 		int[][] M = new int[sizeMatrix][sizeMatrix];
 		for (int i = 0; i < sizeMatrix; i++)
 			for (int j = 0; j < sizeMatrix; j++)
@@ -68,7 +72,12 @@ public class gameLogic {
 		int[] zeroNum = new int[sizeMatrix];
 		int i, j, k;
 		boolean changed = false;
-
+		
+		//swipe to start
+		if (context.playState()==0){
+			context.nextState();
+		}
+		
 		if (d == direction.left) {
 			for (i = 0; i < sizeMatrix; i++) {
 
@@ -103,8 +112,9 @@ public class gameLogic {
 				if (isFull()) {
 					// full& not movable leads to gameover
 					if (!isMovable()) {
-						gameOver = true;// game over
 						calcScore();
+						//playing to game over
+						context.nextState();
 					}
 				}
 			} else {
@@ -146,7 +156,7 @@ public class gameLogic {
 	}
 
 	// see if full
-	public boolean isFull() {
+	private boolean isFull() {
 		for (int i = 0; i < sizeMatrix; i++) {
 			for (int j = 0; j < sizeMatrix; j++)
 				if (matrix[i][j] == 0) {
@@ -157,7 +167,7 @@ public class gameLogic {
 	}
 
 	// see if movable
-	public boolean isMovable() {
+	private boolean isMovable() {
 		for (int i = 0; i < sizeMatrix; i++) {
 			for (int j = 0; j < sizeMatrix - 1; j++)
 				if (matrix[i][j] == matrix[i][j + 1] || matrix[j][i] == matrix[j + 1][i]) {
@@ -167,7 +177,7 @@ public class gameLogic {
 		return false;
 	}
 
-	public void generateNewBlock(int[] znum) {
+	private void generateNewBlock(int[] znum) {
 		int numZero = 0;
 		int i;
 		// first count the number
@@ -191,8 +201,11 @@ public class gameLogic {
 
 	// restart
 	void restart(int size) {
-		gameStart = true;
-		gameOver = false;
+
+		System.out.println("Press arrow keys to play the game!");
+		context=new gamePlayContext(new gameNoStart());
+
+		
 		step = 1;
 		sizeMatrix = size;
 		matrix = new int[size][size];
@@ -214,6 +227,10 @@ public class gameLogic {
 		}
 		step = step + 1;
 		System.out.println('\n');
+	}
+	
+	public int playState(){
+		return context.playState();
 	}
 
 	/*

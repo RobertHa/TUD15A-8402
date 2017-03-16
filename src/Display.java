@@ -2,11 +2,13 @@
 import java.awt.Frame;
 import java.awt.event.*;
 
-public class Display extends Frame {
+public class Display extends Frame{
 	private gameLogic M;
+
 	
 	Display(String title, int w, int h, int rows, int cols, int[][] m, gameLogic M) {
-
+		
+				
 		setTitle(title);
 		this.M = M;
 		// Now create a Canvas and add it to the Frame.
@@ -30,7 +32,7 @@ public class Display extends Frame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				int key = e.getExtendedKeyCode();
-				if (M.gameOver==false){
+				if (M.playState()!=2){
 					switch (key) {
 					case KeyEvent.VK_UP:
 						doStuff(0);
@@ -63,7 +65,7 @@ public class Display extends Frame {
 	}
 
 	public static void main(String[] a) {
-		int size=4;
+		int size=2;
 		gameLogic M = gameLogic.getInstance(size);
 		new Display("Test", 300, 300, M.sizeMatrix, M.sizeMatrix, M.matrix, M).setVisible(true);
 	}
@@ -75,30 +77,30 @@ public class Display extends Frame {
 			System.out.println("swipe up: \n");
 			M.swipe(gameLogic.direction.up);
 			this.getComponent(0).repaint();
-			M.show();
+			//M.show();
 			break;
 		case 1:
 			System.out.println("swipe left: \n");
 			M.swipe(gameLogic.direction.left);
 			this.getComponent(0).repaint();
-			M.show();
+			//M.show();
 			break;
 		case 2:
 			System.out.println("swipe down: \n");
 			M.swipe(gameLogic.direction.down);
 			this.getComponent(0).repaint();
-			M.show();
+			//M.show();
 			break;
 		case 3:
 			System.out.println("swipe right: \n");
 			M.swipe(gameLogic.direction.right);
 			this.getComponent(0).repaint();
-			M.show();
+			//M.show();
 			break;
 		case 4:	
 			M.restart(M.sizeMatrix);
 			this.getComponent(0).repaint();
-			M.show();
+			//M.show();
 			break;
 			
 		}
