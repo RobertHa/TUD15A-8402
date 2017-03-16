@@ -17,12 +17,12 @@ public class Grid extends Canvas {
 	}
 
 	public void paint(Graphics g) {
-		
-		Color[] c={Color.cyan,Color.orange,Color.lightGray,Color.magenta};		
+
+		Color[] c={Color.cyan,Color.orange,Color.lightGray,Color.magenta};
 		width = getSize().width;
 		height = getSize().height;
-		
-		if (game.context.state.getCurrentState()!=2) {//2 == gameoverstate
+
+		if (game.context.state.getCurrentState()==1) {//2 == gameoverstate
 			int rows = game.board.size;
 			int cols = game.board.size;
 			int rowHt = height / (rows);
@@ -50,10 +50,15 @@ public class Grid extends Canvas {
 				g.drawLine(0, i * rowHt, width, i * rowHt);
 			for (int i = 0; i < cols; i++)
 				g.drawLine(i * rowWid, 0, i * rowWid, height);
-		} else {
+
+		} else if (game.context.state.getCurrentState() == 0) {
+			g.drawString("Press 'S' to start", width / 3 , height / 3);
+			g.drawString("Press 'E' to exit",width / 3 - 40 , height / 3 - 40);
+
+		} else if (game.context.state.getCurrentState()==2) {
 			g.drawString("Game Over!", width / 2 - 40, height / 2 - 10);
 			g.drawString("Your Score: " + game.board.score, width / 2 - 45, height / 2 + 10);
-			g.drawString("Press space to restart!", width / 2 - 50,height / 2 + 20);//TODO not sure if this is correct
+			g.drawString("Press space to go to the menue!", width / 2 - 50,height / 2 + 20);//TODO not sure if this is correct
 		}
 	}
 

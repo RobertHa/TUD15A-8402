@@ -10,6 +10,8 @@ public class Playing implements GameState {
 
     @Override
     public void action(Game game) {
+        System.out.println("Direction is "+game.dir);
         gameLogic.swipe(game.dir,game.board,game);
+        game.display.repaint();
     }
 }

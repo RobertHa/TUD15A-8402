@@ -12,13 +12,13 @@ public class Game {
 
     Game(int size){
         this.context = new GameplayContext(new Menue());//TODO more here
-        this.board = new Board(size);
+        //this.board = new Board(size);
         currentSize = size;
     }
 
 
     public static void main(String[] a) {
-        int size=4;
+        int size=2;
         Game game = new Game(size);
         game.display = new Display("Test", 300, 300, game);
         game.display.setVisible(true);

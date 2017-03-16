@@ -73,7 +73,7 @@ public class gameLogic {
 					if (!isMovable(board)) {
 						calcScore(board);
 						//playing to game over
-						game.context.nextState();
+						game.context.state.nextState(game);
 					}
 				}
 			} else {

@@ -32,11 +32,15 @@ public class Display extends Frame{
 				int key = e.getExtendedKeyCode();
 				switch (game.context.state.getCurrentState()){//2  == gameover
 					case 0:
+						System.out.println("gamestate: "+game.context.state.getCurrentState());
 						if (key == KeyEvent.VK_E||key == KeyEvent.VK_S){
 							game.key = key;
 							game.context.state.action(game);
 						}
+						game.display.getComponent(0).repaint();
+						break;
 					case 1:
+						System.out.println("gamestate: "+game.context.state.getCurrentState());
 						switch (key) {
 							case KeyEvent.VK_UP:
 								game.dir = gameLogic.direction.up;
@@ -55,11 +59,15 @@ public class Display extends Frame{
 								game.context.state.action(game);
 								break;
 						}
+						game.display.getComponent(0).repaint();
+						break;
 					case 2:
+						System.out.println("gamestate: "+game.context.state.getCurrentState());
 						if (key==KeyEvent.VK_SPACE){
 							game.key = key;
 							game.context.state.action(game);
 						}
+						game.display.getComponent(0).repaint();
 						break;
 				}
 

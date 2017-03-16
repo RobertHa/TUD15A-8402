@@ -10,6 +10,7 @@ public void nextState(Game game){
 	@Override
 	public void action(Game game) {
 		game.board = new Board(game.currentSize);
+        game.display.repaint();
         this.nextState(game);
 	}
 }
