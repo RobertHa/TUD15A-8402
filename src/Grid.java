@@ -26,6 +26,7 @@ public class Grid extends Canvas {
 		height = getSize().height;
 
 		if (game.context.state.getCurrentState()==1) {//2 == gameoverstate
+			this.setBackground(new Color(247,247,247));
 			int rows = game.board.size;
 			int cols = game.board.size;
 			int rowHt = height / (rows);
@@ -66,10 +67,25 @@ public class Grid extends Canvas {
 							sizeFont*4);
 
 		} else if (game.context.state.getCurrentState() == 0) {
-			g.drawString("Press 'S' to start", width / 3, height / 3);
-			g.drawString("Press 'E' to exit",width / 3 + 3, height / 3 + 40);
+			this.setBackground(Color.black);
+			g.setFont(new Font("Purisa", Font.PLAIN, 50));
+			Color top_color = new Color(200, 200, 0);
+			Color side_color = new Color(100, 100, 0);
+			for (int i = 0; i < 5; i++) {
+			   g.setColor(top_color);
+			   g.drawString("2048", (width + i)- 120, (height + i + 1)- 220);
+			   g.setColor(side_color);
+			   g.drawString("2048", width - i -1- 120 , height - i- 220 );
+			   }
+			g.setColor(Color.yellow);
+			g.drawString("2048", width + 5 - 120 , height + 5 - 220);
+			g.setFont(new Font("Purisa", Font.PLAIN, 15));
+			g.setColor(Color.WHITE);
+			g.drawString("Press 'S' to start", width + 5 - 120 , height / 3 + 50);
+			g.drawString("Press 'E' to exit", width + 5 - 120 , height / 3 + 90);
 
 		} else if (game.context.state.getCurrentState()==2) {
+			this.setBackground(new Color(247,247,247));
 			g.drawString("Game Over!", width / 2 - 40, height / 2 - 10);
 			g.drawString("Your Score: " + ((Score)game.observers.get(0)).score, width / 2 - 45, height / 2 + 10);
 			g.drawString("Press space to go to the menue!", width / 2 - 50,height / 2 + 20);//TODO not sure if this is correct
