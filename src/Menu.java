@@ -1,6 +1,6 @@
 import java.awt.event.KeyEvent;
 
-public class Menue implements GameState {
+public class Menu implements GameState {
     static final int currentState = 0;
 
 
