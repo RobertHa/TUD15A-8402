@@ -1,3 +1,5 @@
+import java.awt.event.KeyEvent;
+
 public class GameOver implements GameState {
 	public static final int currentState = 2;
 	public int getCurrentState() {
@@ -9,8 +11,11 @@ public void nextState(Game game){
  }
 	@Override
 	public void action(Game game) {
-		game.board = new Board(game.currentSize);
-        game.display.repaint();
-        this.nextState(game);
+		if(game.key== KeyEvent.VK_SPACE){
+            game.board = new Board(game.currentSize);
+
+            game.removeObserver(game.observers.get(0));
+            this.nextState(game);
+        }
 	}
 }

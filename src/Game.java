@@ -1,18 +1,20 @@
+import java.util.ArrayList;
+
 /**
  * Created by Robert Hamsch on 16.03.2017.
  */
-public class Game {
+public class Game implements Subject{
     GameplayContext context;
     Display display;
     Board board;
     int currentSize;
-    GameLogic.direction dir;
     int key;
+    ArrayList<Observer> observers;
 
 
     Game(int size){
         this.context = new GameplayContext(new Menu());//TODO more here
-        //this.board = new Board(size);
+        observers = new ArrayList<>(1);
         currentSize = size;
     }
 
@@ -24,4 +26,21 @@ public class Game {
         game.display.setVisible(true);
     }
 
+    @Override
+    public void registerObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObserver() {
+        for (Observer obs:this.observers
+             ) {
+            obs.update();
+        }
+    }
 }

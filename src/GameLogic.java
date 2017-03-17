@@ -51,6 +51,7 @@ public class GameLogic {
 							zeroNum[i]--;
 						} else if (M[i][k] == board.board[i][j]) {
 							M[i][k] = board.board[i][j] * 2;
+                            game.board.roundScore += M[i][k]*10;
 							k++;
 						} else {
 							k++;
@@ -71,7 +72,6 @@ public class GameLogic {
 				if (isFull(board)) {
 					// full& not movable leads to gameover
 					if (!isMovable(board)) {
-						calcScore(board);
 						//playing to game over
 						game.context.state.nextState(game);
 					}
@@ -106,7 +106,7 @@ public class GameLogic {
 	}
 
 	// calculates highest tile when you are gameover
-	public static void calcScore(Board board) {
+	/*public static void calcScore(Board board) {
         int score = 0;
 		for (int i = 0; i < board.size; i++) {
 			for (int j = 0; j < board.size; j++) {
@@ -114,7 +114,7 @@ public class GameLogic {
 			}
 		}
         board.score = score;
-	}
+	}*/
 
 	// see if full
 	private static boolean isFull(Board board) {

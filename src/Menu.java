@@ -19,16 +19,16 @@ public class Menu implements GameState {
 
     @Override
     public void action(Game game) {
-        System.out.println("at the menue action, key is: "+(game.key==KeyEvent.VK_S?"s":"e"));
+
         if(game.key == KeyEvent.VK_S){
             game.board= new Board(game.currentSize);
-            game.display.repaint();
+            Observer score = new Score(game);
+            game.registerObserver(score);
             this.nextState(game);
         }
+        
         if (game.key == KeyEvent.VK_E){
             System.exit(0);
-        }else{
-            System.out.println("Somehow i ended up here...");
         }
     }
 }

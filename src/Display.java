@@ -29,47 +29,9 @@ public class Display extends Frame{
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				int key = e.getExtendedKeyCode();
-				switch (game.context.state.getCurrentState()){//2  == gameover
-					case 0:
-						System.out.println("gamestate: "+game.context.state.getCurrentState());
-						if (key == KeyEvent.VK_E||key == KeyEvent.VK_S){
-							game.key = key;
-							game.context.state.action(game);
-						}
-						game.display.getComponent(0).repaint();
-						break;
-					case 1:
-						System.out.println("gamestate: "+game.context.state.getCurrentState());
-						switch (key) {
-							case KeyEvent.VK_UP:
-								game.dir = GameLogic.direction.up;
-								game.context.state.action(game);
-								break;
-							case KeyEvent.VK_LEFT:
-								game.dir = GameLogic.direction.left;
-								game.context.state.action(game);
-								break;
-							case KeyEvent.VK_DOWN:
-								game.dir = GameLogic.direction.down;
-								game.context.state.action(game);
-								break;
-							case KeyEvent.VK_RIGHT:
-								game.dir = GameLogic.direction.right;
-								game.context.state.action(game);
-								break;
-						}
-						game.display.getComponent(0).repaint();
-						break;
-					case 2:
-						System.out.println("gamestate: "+game.context.state.getCurrentState());
-						if (key==KeyEvent.VK_SPACE){
-							game.key = key;
-							game.context.state.action(game);
-						}
-						game.display.getComponent(0).repaint();
-						break;
-				}
+				game.key = e.getExtendedKeyCode();
+				game.context.state.action(game);
+				game.display.getComponent(0).repaint();
 
 			}
 
