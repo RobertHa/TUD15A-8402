@@ -25,7 +25,7 @@ public class Game implements Subject {
 			singleInstance = new Game(size);
 			return singleInstance;
 		}
-		return null;
+		return singleInstance;
 	}
 
 	public static void main(String[] a) {
