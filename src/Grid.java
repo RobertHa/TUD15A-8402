@@ -22,7 +22,7 @@ public class Grid extends Canvas {
 		Color[] c={Color.white,Color.white, new Color(255,255,170), new Color(255,255,128), new Color(255,255,85)
 				, new Color(255,255,43), new Color(255,255,0), new Color(213,213,0), new Color(170,170,0)
 				, new Color(128,128,0), new Color(85,85,0), new Color(43,43,0)};
-		width = getSize().width - 200;
+		width = getSize().width*3/5;
 		height = getSize().height;
 
 		if (game.context.state.getCurrentState()==1) {//2 == gameoverstate
@@ -61,9 +61,9 @@ public class Grid extends Canvas {
 			g.setColor(Color.black);
 			g.setFont(new Font("Default",Font.PLAIN,sizeFont));;
 			g.drawString("Your Score:", width + 40 ,
-					100);
+					sizeFont*2);
 			g.drawString(Integer.toString(((Score)game.observers.get(0)).score) , width + 40 ,
-							140);
+							sizeFont*4);
 
 		} else if (game.context.state.getCurrentState() == 0) {
 			g.drawString("Press 'S' to start", width / 3, height / 3);
