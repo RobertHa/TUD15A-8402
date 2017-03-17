@@ -1,3 +1,5 @@
+import java.awt.event.KeyEvent;
+
 public class Playing implements GameState {
     static final int currentState = 1;
     public int getCurrentState() {
@@ -10,8 +12,19 @@ public class Playing implements GameState {
 
     @Override
     public void action(Game game) {
-        System.out.println("Direction is "+game.dir);
-        GameLogic.swipe(game.dir,game.board,game);
-        game.display.repaint();
+        switch (game.key) {
+            case KeyEvent.VK_UP:
+                GameLogic.swipe(GameLogic.direction.up,game.board,game);
+                break;
+            case KeyEvent.VK_LEFT:
+                GameLogic.swipe(GameLogic.direction.left,game.board,game);
+                break;
+            case KeyEvent.VK_DOWN:
+                GameLogic.swipe(GameLogic.direction.down,game.board,game);
+                break;
+            case KeyEvent.VK_RIGHT:
+                GameLogic.swipe(GameLogic.direction.right,game.board,game);
+                break;
+        }
     }
 }
