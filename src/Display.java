@@ -29,7 +29,7 @@ public class Display extends Frame{
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				int key = e.getExtendedKeyCode();
+				game.key = e.getExtendedKeyCode();
 				game.context.state.action(game);
 				game.display.getComponent(0).repaint();
 
