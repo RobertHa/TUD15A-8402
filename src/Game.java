@@ -10,18 +10,24 @@ public class Game implements Subject{
     int currentSize;
     int key;
     ArrayList<Observer> observers;
+    private static Game singleInstance;
 
-
-    Game(int size){
+    private Game(int size){
         this.context = new GameplayContext(new Menu());//TODO more here
         observers = new ArrayList<>(1);
         currentSize = size;
     }
-
+    public static Game getInstance(int size){
+        if (Game.singleInstance == null){
+            singleInstance = new Game(size);
+            return singleInstance;
+        }
+        return null;
+    }
 
     public static void main(String[] a) {
         int size=4;
-        Game game = new Game(size);
+        Game game = Game.getInstance(size);
         game.display = new Display("Test", 500, 300, game);
         game.display.setVisible(true);
     }
