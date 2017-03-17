@@ -14,5 +14,6 @@ public class Board {
         int [] dummy = new int[size];
         Arrays.fill(dummy,size);
         GameLogic.generateNewBlock(dummy,this);
+
     }
 }

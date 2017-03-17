@@ -9,6 +9,6 @@ public class Score implements Observer {
         this.score = 0;
     }
     public void update(){
-
+        score+=game.board.roundScore;
     }
 }

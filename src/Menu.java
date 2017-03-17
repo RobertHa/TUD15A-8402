@@ -22,6 +22,8 @@ public class Menu implements GameState {
 
         if(game.key == KeyEvent.VK_S){
             game.board= new Board(game.currentSize);
+            Observer score = new Score(game);
+            game.registerObserver(score);
             this.nextState(game);
         }
         

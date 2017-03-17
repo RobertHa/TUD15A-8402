@@ -13,6 +13,8 @@ public void nextState(Game game){
 	public void action(Game game) {
 		if(game.key== KeyEvent.VK_SPACE){
             game.board = new Board(game.currentSize);
+
+            game.removeObserver(game.observers.get(0));
             this.nextState(game);
         }
 	}

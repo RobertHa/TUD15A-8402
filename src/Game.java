@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Created by Robert Hamsch on 16.03.2017.
  */
@@ -6,13 +8,13 @@ public class Game implements Subject{
     Display display;
     Board board;
     int currentSize;
-    Score score;
     int key;
+    ArrayList<Observer> observers;
 
 
     Game(int size){
         this.context = new GameplayContext(new Menu());//TODO more here
-        this.score = new Score(this);
+        observers = new ArrayList<>(1);
         currentSize = size;
     }
 
@@ -20,22 +22,25 @@ public class Game implements Subject{
     public static void main(String[] a) {
         int size=4;
         Game game = new Game(size);
-        game.display = new Display("Test", 300, 300, game);
+        game.display = new Display("Test", 500, 300, game);
         game.display.setVisible(true);
     }
 
     @Override
     public void registerObserver(Observer observer) {
-        
+        observers.add(observer);
     }
 
     @Override
     public void removeObserver(Observer observer) {
-
+        observers.remove(observer);
     }
 
     @Override
     public void notifyObserver() {
-
+        for (Observer obs:this.observers
+             ) {
+            obs.update();
+        }
     }
 }
