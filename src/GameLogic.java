@@ -2,11 +2,9 @@ import java.util.Arrays;
 
 public class GameLogic {
 
-
-
-	enum direction {left,right,up,down};//4 directions
-
-	
+	enum direction {
+		left, right, up, down
+	};// 4 directions
 
 	// will be used for simplifying swipe
 	// trans turns up/down to left/right
@@ -27,19 +25,18 @@ public class GameLogic {
 		board.board = M.clone();
 	}
 
-
-    //perform an action on the board
-	public static boolean swipe(direction d, Board board,Game game) {
+	// perform an action on the board
+	public static boolean swipe(direction d, Board board, Game game) {
 		int[][] M = new int[board.size][board.size];
 		int[] zeroNum = new int[board.size];
 		int i, j, k;
 		boolean changed = false;
 
-		
 		if (d == direction.left) {
 			for (i = 0; i < board.size; i++) {
 
-				zeroNum[i] = board.size;// record the number of zeros in each line
+				zeroNum[i] = board.size;// record the number of zeros in each
+										// line
 
 				k = 0;
 				for (j = 0; j < board.size; j++) {
@@ -49,7 +46,10 @@ public class GameLogic {
 							zeroNum[i]--;
 						} else if (M[i][k] == board.board[i][j]) {
 							M[i][k] = board.board[i][j] * 2;
-                            game.board.roundScore += M[i][k]*10; //adding up the score for this move
+							game.board.roundScore += M[i][k] * 10; // adding up
+																	// the score
+																	// for this
+																	// move
 							k++;
 						} else {
 							k++;
@@ -69,13 +69,13 @@ public class GameLogic {
 				if (isFull(board)) {
 					// full& not movable leads to gameover
 					if (!isMovable(board)) {
-						//playing to game over
+						// playing to game over
 						game.context.state.nextState(game);
 					}
 				}
 			} else {
 				board.board = M.clone();
-				generateNewBlock(zeroNum,board);// all direction here is left
+				generateNewBlock(zeroNum, board);// all direction here is left
 			}
 		}
 
@@ -87,13 +87,13 @@ public class GameLogic {
 
 		if (d == direction.up) {
 			trans(board);
-			changed = swipe(direction.left,board,game);
+			changed = swipe(direction.left, board, game);
 			trans(board);
 		}
 		if (d == direction.down) {
 			trans(board);
 			l2r(board);
-			changed = swipe(direction.left,board,game);
+			changed = swipe(direction.left, board, game);
 			l2r(board);
 			trans(board);
 		}
@@ -101,7 +101,6 @@ public class GameLogic {
 		return changed;
 
 	}
-
 
 	// see if full
 	private static boolean isFull(Board board) {
@@ -139,10 +138,7 @@ public class GameLogic {
 		}
 		// generate a new block
 		board.board[i][board.size - newPos - 1] = 2;// 2 or 4
-        return board;
+		return board;
 	}
-
-
-
 
 }
