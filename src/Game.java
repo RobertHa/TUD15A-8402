@@ -11,7 +11,7 @@ public class Game {
 
 
     Game(int size){
-        this.context = new GameplayContext(new Menue());//TODO more here
+        this.context = new GameplayContext(new Menu());//TODO more here
         //this.board = new Board(size);
         currentSize = size;
     }

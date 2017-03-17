@@ -4,7 +4,7 @@ public class GameOver implements GameState {
 		return currentState;
 	}
 public void nextState(Game game){
-	game.context.setState(new Menue());
+	game.context.setState(new Menu());
 	System.out.println("State: Press to start!");
  }
 	@Override
