@@ -19,7 +19,7 @@ public class Grid extends Canvas {
 	public void paint(Graphics g) {
 
 		Color[] c={Color.cyan,Color.orange,Color.lightGray,Color.magenta};
-		width = getSize().width;
+		width = getSize().width - 200;
 		height = getSize().height;
 
 		if (game.context.state.getCurrentState()==1) {//2 == gameoverstate
@@ -48,8 +48,16 @@ public class Grid extends Canvas {
 			}
 			for (int i = 0; i < rows; i++)
 				g.drawLine(0, i * rowHt, width, i * rowHt);
-			for (int i = 0; i < cols; i++)
+			for (int i = 0; i <= cols; i++)
 				g.drawLine(i * rowWid, 0, i * rowWid, height);
+			
+			// Display Score
+			g.setColor(Color.black);
+			g.setFont(new Font("Default",Font.PLAIN,sizeFont));;
+			g.drawString("Your Score:", width + 40 ,
+					100);
+			g.drawString(Integer.toString(game.board.score) , width + 40 ,
+							140);
 
 		} else if (game.context.state.getCurrentState() == 0) {
 			g.drawString("Press 'S' to start", width / 3 , height / 3);

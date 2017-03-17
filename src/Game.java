@@ -20,7 +20,7 @@ public class Game {
     public static void main(String[] a) {
         int size=4;
         Game game = new Game(size);
-        game.display = new Display("Test", 300, 300, game);
+        game.display = new Display("Test", 500, 300, game);
         game.display.setVisible(true);
     }
 
