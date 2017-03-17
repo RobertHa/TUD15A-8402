@@ -1,18 +1,18 @@
 /**
  * Created by Robert Hamsch on 16.03.2017.
  */
-public class Game {
+public class Game implements Subject{
     GameplayContext context;
     Display display;
     Board board;
     int currentSize;
-    GameLogic.direction dir;
+    Score score;
     int key;
 
 
     Game(int size){
         this.context = new GameplayContext(new Menu());//TODO more here
-        //this.board = new Board(size);
+        this.score = new Score(this);
         currentSize = size;
     }
 
@@ -24,4 +24,18 @@ public class Game {
         game.display.setVisible(true);
     }
 
+    @Override
+    public void registerObserver(Observer observer) {
+        
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+
+    }
+
+    @Override
+    public void notifyObserver() {
+
+    }
 }

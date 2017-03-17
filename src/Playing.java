@@ -26,5 +26,7 @@ public class Playing implements GameState {
                 GameLogic.swipe(GameLogic.direction.right,game.board,game);
                 break;
         }
+        game.notifyObserver();
+        game.board.roundScore = 0;
     }
 }

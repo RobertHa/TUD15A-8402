@@ -6,10 +6,10 @@ import java.util.Arrays;
 public class Board {
     int size;
     int [][] board;
-    int score;
+    int roundScore;
     Board(int size){
         this.size = size;
-        score = 0;
+        roundScore = 0;
         board = new int[size][size];
         int [] dummy = new int[size];
         Arrays.fill(dummy,size);
