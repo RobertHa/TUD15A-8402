@@ -25,10 +25,9 @@ public class Menue implements GameState {
             game.display.repaint();
             this.nextState(game);
         }
+        
         if (game.key == KeyEvent.VK_E){
             System.exit(0);
-        }else{
-            System.out.println("Somehow i ended up here...");
         }
     }
 }

@@ -41,8 +41,8 @@ public class Grid extends Canvas {
 						g.fillRect(rowWid*j, rowHt*i, rowWid, rowHt);
 						g.setColor(Color.black);
 						g.setFont(new Font("Default",Font.PLAIN,sizeFont));;
-						g.drawString(Integer.toString(game.board.board[i][j]), (j + 1) * rowWid - (rowWid / 2),
-								(i + 1) * rowHt - (rowHt / 2));
+						g.drawString(Integer.toString(game.board.board[i][j]), (j + 1) * rowWid - (rowWid / 2) - 5,
+								(i + 1) * rowHt - (rowHt / 2) + 3);
 					}
 				}
 			}
@@ -52,8 +52,8 @@ public class Grid extends Canvas {
 				g.drawLine(i * rowWid, 0, i * rowWid, height);
 
 		} else if (game.context.state.getCurrentState() == 0) {
-			g.drawString("Press 'S' to start", width / 3 , height / 3);
-			g.drawString("Press 'E' to exit",width / 3 - 40 , height / 3 - 40);
+			g.drawString("Press 'S' to start", width / 3, height / 3);
+			g.drawString("Press 'E' to exit",width / 3 + 3, height / 3 + 40);
 
 		} else if (game.context.state.getCurrentState()==2) {
 			g.drawString("Game Over!", width / 2 - 40, height / 2 - 10);
