@@ -2,13 +2,14 @@ import java.awt.event.KeyEvent;
 
 public class Playing implements GameState {
     static final int currentState = 1;
+
     public int getCurrentState() {
         return currentState;
     }
- public void nextState(Game game){
-	game.context.setState(new GameOver());
-	System.out.println("state: Game Over! Press SPACE to start!");
- }
+
+    public void nextState(Game game){
+	    game.context.setState(new GameOver());
+    }
 
     @Override
     public void action(Game game) {

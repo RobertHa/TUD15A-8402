@@ -5,7 +5,6 @@ public class GameLogic {
 
 
 	enum direction {left,right,up,down};//4 directions
-	private static GameplayContext context;
 
 	
 
@@ -28,8 +27,8 @@ public class GameLogic {
 		board.board = M.clone();
 	}
 
-	// four actions
 
+    //perform an action on the board
 	public static boolean swipe(direction d, Board board,Game game) {
 		int[][] M = new int[board.size][board.size];
 		int[] zeroNum = new int[board.size];
@@ -40,8 +39,7 @@ public class GameLogic {
 		if (d == direction.left) {
 			for (i = 0; i < board.size; i++) {
 
-				zeroNum[i] = board.size;// record the number of zeros in each
-										// line
+				zeroNum[i] = board.size;// record the number of zeros in each line
 
 				k = 0;
 				for (j = 0; j < board.size; j++) {
@@ -51,7 +49,7 @@ public class GameLogic {
 							zeroNum[i]--;
 						} else if (M[i][k] == board.board[i][j]) {
 							M[i][k] = board.board[i][j] * 2;
-                            game.board.roundScore += M[i][k]*10;
+                            game.board.roundScore += M[i][k]*10; //adding up the score for this move
 							k++;
 						} else {
 							k++;
@@ -68,7 +66,6 @@ public class GameLogic {
 			}
 
 			if (changed == false) {
-				//System.out.print("Same!\n");
 				if (isFull(board)) {
 					// full& not movable leads to gameover
 					if (!isMovable(board)) {
@@ -105,16 +102,6 @@ public class GameLogic {
 
 	}
 
-	// calculates highest tile when you are gameover
-	/*public static void calcScore(Board board) {
-        int score = 0;
-		for (int i = 0; i < board.size; i++) {
-			for (int j = 0; j < board.size; j++) {
-				score = Math.max(score, board.board[i][j]);
-			}
-		}
-        board.score = score;
-	}*/
 
 	// see if full
 	private static boolean isFull(Board board) {
@@ -151,12 +138,7 @@ public class GameLogic {
 			newPos = newPos - znum[i++];
 		}
 		// generate a new block
-		// if (Math.random()>0.3){
 		board.board[i][board.size - newPos - 1] = 2;// 2 or 4
-		// }
-		// else{
-		// matrix[i][sizeMatrix-newPos-1]=4;
-		// }
         return board;
 	}
 

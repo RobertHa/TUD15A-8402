@@ -10,23 +10,19 @@ public class Menu implements GameState {
     }
 
     public void nextState(Game game){
-	game.context.setState(new Playing());
-	System.out.println("state: Game starts!");
- }
- public int playState(GameplayContext context){
-	 return 0;
- }
+	    game.context.setState(new Playing());
+    }
 
     @Override
     public void action(Game game) {
-
+        // "s" starts the game
         if(game.key == KeyEvent.VK_S){
             game.board= new Board(game.currentSize);
             Observer score = new Score(game);
             game.registerObserver(score);
             this.nextState(game);
         }
-        
+        //"e" exits it
         if (game.key == KeyEvent.VK_E){
             System.exit(0);
         }

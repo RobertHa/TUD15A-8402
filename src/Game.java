@@ -12,11 +12,13 @@ public class Game implements Subject{
     ArrayList<Observer> observers;
     private static Game singleInstance;
 
+    //private constructor for singleton implementation
     private Game(int size){
         this.context = new GameplayContext(new Menu());//TODO more here
         observers = new ArrayList<>(1);
         currentSize = size;
     }
+    //public method to create instance
     public static Game getInstance(int size){
         if (Game.singleInstance == null){
             singleInstance = new Game(size);
@@ -32,6 +34,8 @@ public class Game implements Subject{
         game.display.setVisible(true);
     }
 
+
+    //methods for the observerpattern
     @Override
     public void registerObserver(Observer observer) {
         observers.add(observer);

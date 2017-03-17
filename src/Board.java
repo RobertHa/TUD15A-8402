@@ -11,8 +11,11 @@ public class Board {
         this.size = size;
         roundScore = 0;
         board = new int[size][size];
+
+        //this is needed for the generation of the first number
         int [] dummy = new int[size];
         Arrays.fill(dummy,size);
+
         GameLogic.generateNewBlock(dummy,this);
 
     }
