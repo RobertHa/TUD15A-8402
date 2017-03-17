@@ -14,6 +14,7 @@ public class Grid extends Canvas {
 	Grid(int w, int h, Game g) {
 		setSize(width = w, height = h);
 		this.game = g;
+		this.setBackground(new Color(247,247,247));
 	}
 
 	public void paint(Graphics g) {
