@@ -61,7 +61,7 @@ public class Grid extends Canvas {
 			g.setFont(new Font("Default",Font.PLAIN,sizeFont));;
 			g.drawString("Your Score:", width + 40 ,
 					100);
-			g.drawString(Integer.toString(game.observers.get(0).score) , width + 40 ,
+			g.drawString(Integer.toString(((Score)game.observers.get(0)).score) , width + 40 ,
 							140);
 
 		} else if (game.context.state.getCurrentState() == 0) {
@@ -70,7 +70,7 @@ public class Grid extends Canvas {
 
 		} else if (game.context.state.getCurrentState()==2) {
 			g.drawString("Game Over!", width / 2 - 40, height / 2 - 10);
-			g.drawString("Your Score: " + game.observers.get(0).score, width / 2 - 45, height / 2 + 10);
+			g.drawString("Your Score: " + ((Score)game.observers.get(0)).score, width / 2 - 45, height / 2 + 10);
 			g.drawString("Press space to go to the menue!", width / 2 - 50,height / 2 + 20);//TODO not sure if this is correct
 		}
 	}
